@@ -62,14 +62,21 @@ public class Game extends JFrame {
             setLabelText();
 
             if (!currentGuess.toString().contains("_")) {
-                JOptionPane.showMessageDialog(this, "Congratulations! You won!");
+                if(JOptionPane.showConfirmDialog(null, "Congratulations! You won!", "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE) == 0)
+                {
+                    hangman.restartGame();
+                }
             }
         }
         else {
             remainingAttempts--;
 
             if (remainingAttempts == 0) {
-                JOptionPane.showMessageDialog(this, "Game Over! The word was: " + selectedWord.toLowerCase(Locale.ROOT));
+
+                if(JOptionPane.showConfirmDialog(null, "Game Over! The word was: " + selectedWord.toLowerCase(Locale.ROOT), "You lost!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE) == 0)
+                {
+                    hangman.restartGame();
+                }
             }
         }
     }
