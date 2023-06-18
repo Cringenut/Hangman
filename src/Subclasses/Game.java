@@ -4,9 +4,10 @@ import Hangman.Hangman;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
+import java.util.*;
 
 public class Game extends JFrame {
 
@@ -102,5 +103,25 @@ public class Game extends JFrame {
         return gamePanel;
     }
 
+    public void giveHints() {
+        TreeMap<Character, Integer> letterCountMap = new TreeMap<>();
 
+        // Count the occurrence of each letter
+        for (char c : selectedWord.toCharArray()) {
+            if (Character.isLetter(c)) {
+                c = Character.toLowerCase(c); // Ignore case
+                letterCountMap.put(c, letterCountMap.getOrDefault(c, 0) + 1);
+            }
+        }
+
+        if(letterCountMap.size() < 3) {
+            return;
+        }
+
+        // Sort the map by letter (key) in ascending order
+        List<Map.Entry<Character, Integer>> sortedEntries = new ArrayList<>(letterCountMap.entrySet());
+        Collections.sort(sortedEntries, Comparator.comparing(Map.Entry::getKey));
+
+        this.hangman.getKeyboard().clickKeyAtLetter(letterCountMap.lastKey());
+    }
 }

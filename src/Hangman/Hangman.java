@@ -16,10 +16,13 @@ public class Hangman extends JFrame {
     private Game game;
     private Picture picture;
 
+
+    public Keyboard getKeyboard() {
+        return keyboard;
+    }
     public Game getGame() {
         return game;
     }
-
     public Picture getPicture() {
         return picture;
     }
@@ -30,9 +33,11 @@ public class Hangman extends JFrame {
         setLayout(new BorderLayout());
 
         // Create main sub objects
-        keyboard = new Keyboard(this);
-        game = new Game(this);
-        picture = new Picture();
+        this.keyboard = new Keyboard(this);
+        this.game = new Game(this);
+        this.picture = new Picture();
+        this.game.giveHints();
+
 
         // Create the three sub panels
         JPanel picturePanel = new JPanel();
