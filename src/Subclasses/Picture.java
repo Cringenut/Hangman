@@ -23,13 +23,14 @@ public class Picture extends JFrame {
                 }
             }
         };
+        changePicture(6);
         picturePanel.setPreferredSize(new Dimension(200, 200));
     }
 
     public void changePicture(int remainingAttempts) {
-        String url = "hangman" + remainingAttempts;
+        String url = "../Images/hangman" + remainingAttempts + ".jpg";
 
-        imageIcon = new ImageIcon(Picture.class.getResource("../Images/pic.jp"));
+        imageIcon = new ImageIcon(Picture.class.getResource(url));
         picturePanel.repaint();
     }
 
