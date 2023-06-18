@@ -4,6 +4,7 @@ import Hangman.Hangman;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,7 @@ public class Game extends JFrame {
         gamePanel.setPreferredSize(new Dimension(400, 100));
         gamePanel.setBackground(Color.GREEN);
 
-        this.selectedWord = "ananas";
+        generateSelectedWord();
         this.selectedWord = selectedWord.toUpperCase(Locale.ROOT);
         currentGuess = new StringBuilder("_".repeat(selectedWord.length()));
         remainingAttempts = 6;
@@ -124,4 +125,23 @@ public class Game extends JFrame {
 
         this.hangman.getKeyboard().clickKeyAtLetter(letterCountMap.lastKey());
     }
+
+    private void generateSelectedWord() {
+        // Database connection details
+        String url = "jdbc:mysql://localhost:3306/words_db";
+        String username = "root";
+        String password = "";
+
+        // SQL query to fetch a random record
+        String query = "SELECT word FROM word ORDER BY RAND() LIMIT 1";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+             selectedWord = rs.getString("word");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
