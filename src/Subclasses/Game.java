@@ -36,7 +36,17 @@ public class Game extends JFrame {
         setLabelText();
         wordLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 
+        JButton restartButton = new JButton("Restart button");
+        restartButton.setText("Restart");
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hangman.restartGame();
+            }
+        });
+
         gamePanel.add(this.wordLabel, BorderLayout.CENTER);
+        gamePanel.add(restartButton, BorderLayout.SOUTH);
     }
 
     private void setLabelText() {
@@ -66,6 +76,9 @@ public class Game extends JFrame {
                 {
                     hangman.restartGame();
                 }
+                else {
+                    System.exit(0);
+                }
             }
         }
         else {
@@ -76,6 +89,9 @@ public class Game extends JFrame {
                 if(JOptionPane.showConfirmDialog(null, "Game Over! The word was: " + selectedWord.toLowerCase(Locale.ROOT), "You lost!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE) == 0)
                 {
                     hangman.restartGame();
+                }
+                else {
+                    System.exit(0);
                 }
             }
         }

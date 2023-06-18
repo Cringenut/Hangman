@@ -2,13 +2,10 @@ package Hangman;
 
 import Subclasses.Game;
 import Subclasses.Keyboard;
+import Subclasses.Picture;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 public class Hangman extends JFrame {
     Hangman() {
@@ -17,6 +14,7 @@ public class Hangman extends JFrame {
 
     private Keyboard keyboard;
     private Game game;
+    private Picture picture;
 
     public Game getGame() {
         return game;
@@ -27,10 +25,10 @@ public class Hangman extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-
         // Create main sub objects
-        Keyboard keyboard = new Keyboard(this);
+        keyboard = new Keyboard(this);
         game = new Game(this);
+        picture = new Picture();
 
         // Create the three sub panels
         JPanel picturePanel = new JPanel();
@@ -40,21 +38,17 @@ public class Hangman extends JFrame {
         // Set the background colors for the panels
         picturePanel.setBackground(Color.RED);
 
-
         // Set the layout for the frame
         setLayout(new BorderLayout());
 
         // Create a container panel to hold the two panels on top
         JPanel topContainerPanel = new JPanel(new BorderLayout());
-        topContainerPanel.add(picturePanel, BorderLayout.WEST);
+        topContainerPanel.add(picture.getPicturePanel(), BorderLayout.WEST);
         topContainerPanel.add(game.getGamePanel(), BorderLayout.EAST);
 
         // Add the container panel and the third panel to the frame
         add(topContainerPanel, BorderLayout.NORTH);
         add(keyboard.getKeyboardPanel(), BorderLayout.CENTER);
-
-
-
 
         pack();
         setVisible(true);
