@@ -20,6 +20,10 @@ public class Hangman extends JFrame {
         return game;
     }
 
+    public Picture getPicture() {
+        return picture;
+    }
+
     private void initializeGUI() {
         setTitle("Hangman");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

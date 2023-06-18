@@ -83,6 +83,7 @@ public class Game extends JFrame {
         }
         else {
             remainingAttempts--;
+            hangman.getPicture().changePicture(remainingAttempts);
 
             if (remainingAttempts == 0) {
 
