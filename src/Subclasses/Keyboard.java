@@ -1,48 +1,49 @@
 package Subclasses;
 
+import Hangman.Hangman;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Keyboard extends JFrame {
-    private JFrame f = new JFrame("Subclasses.Keyboard");
 
-    private JPanel keyboard = new JPanel();
+    private final JPanel keyboardPanel;
+    private Hangman hangman;
 
-    private static final String[][] key = {
-            {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"},
-            {"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
-    };
+    public Keyboard(Hangman hangman) {
+        this.hangman = hangman;
+        this.keyboardPanel = new JPanel((new GridLayout(2, 13)));
+        this.keyboardPanel.setPreferredSize(new Dimension(600, 100));
+        this.keyboardPanel.setBackground(Color.YELLOW);
 
-    public Keyboard() {
-        keyboard.setLayout(new GridBagLayout());
+        // Letters to be displayed on the keyboard
+        String[] letters = {
+                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+                "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+        };
 
-        JPanel pRow;
-        GridBagConstraints c = new GridBagConstraints();
-        c.anchor = GridBagConstraints.WEST;
-        c.weightx = 1d;
+        // Loop to create buttons for each letter
+        for (String letter : letters) {
+            JButton button = new JButton(letter);
+            button.setFont(new Font("Arial", Font.PLAIN, 10));
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String letter = button.getText();
+                    button.setEnabled(false);
+                }
+            });
 
-        for (int row = 0; row < key.length; ++row) {
-            pRow = new JPanel(new GridBagLayout());
-
-            c.gridy = row;
-
-            for (int col = 0; col < key[row].length; ++col)
-                pRow.add(new JButton(key[row][col]));
-
-            keyboard.add(pRow, c);
+            keyboardPanel.add(button);
         }
 
-        f.add(keyboard);
+        add(keyboardPanel, BorderLayout.CENTER);
     }
 
-    public void launch() {
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.pack();
-        f.setVisible(true);
+    public JPanel getKeyboardPanel() {
+        return keyboardPanel;
     }
 
-    public static void main(String[] args) {
-        Keyboard ui = new Keyboard();
-        ui.launch();
-    }
 }

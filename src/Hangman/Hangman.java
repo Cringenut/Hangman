@@ -1,13 +1,13 @@
+package Hangman;
+
+import Subclasses.Keyboard;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Game extends JFrame {
-    Game() {
+public class Hangman extends JFrame {
+    Hangman() {
         initializeGUI();
-    }
-
-    private void generateKeyboardPanel() {
-
     }
 
     private void initializeGUI() {
@@ -15,18 +15,22 @@ public class Game extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Create the three panels
+
+        // Create main sub objects
+        Keyboard keyboard = new Keyboard(this);
+
+        // Create the three sub panels
         JPanel picturePanel = new JPanel();
         JPanel gamePanel = new JPanel();
-        JPanel panel3 = new JPanel((new GridLayout(2, 10)));
+        JPanel keyboardPanel = keyboard.getKeyboardPanel();
+
         picturePanel.setPreferredSize(new Dimension(200, 200));
-        gamePanel.setPreferredSize(new Dimension(300, 200));
-        panel3.setPreferredSize(new Dimension(500, 200));
+        gamePanel.setPreferredSize(new Dimension(400, 200));
+
 
         // Set the background colors for the panels
         picturePanel.setBackground(Color.RED);
         gamePanel.setBackground(Color.GREEN);
-        panel3.setBackground(Color.YELLOW);
 
         // Set the layout for the frame
         setLayout(new BorderLayout());
@@ -38,16 +42,22 @@ public class Game extends JFrame {
 
         // Add the container panel and the third panel to the frame
         add(topContainerPanel, BorderLayout.NORTH);
-        add(panel3, BorderLayout.CENTER);
+        add(keyboardPanel, BorderLayout.CENTER);
 
-        for (int i = 0; i < 5; i++)
-        {
-            JButton button = new JButton();
-            button.setPreferredSize(new Dimension(40, 40));
-            panel3.add(button);
-        }
+        JTextField textField = new JTextField();
+        textField.setPreferredSize(new Dimension(100, 20));
+        gamePanel.add(textField);
+
 
         pack();
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new Hangman();
+            }
+        });
     }
 }
