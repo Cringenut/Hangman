@@ -22,23 +22,21 @@ public class Game extends JFrame {
 
     public Game(Hangman hangman) {
         this.hangman = hangman;
-        gamePanel = new JPanel();
+
+        gamePanel = new JPanel(new BorderLayout());
         gamePanel.setPreferredSize(new Dimension(400, 100));
         gamePanel.setBackground(Color.GREEN);
 
         this.selectedWord = "ananas";
-        this.selectedWord = this.selectedWord.toUpperCase(Locale.ROOT);
+        this.selectedWord = selectedWord.toUpperCase(Locale.ROOT);
         currentGuess = new StringBuilder("_".repeat(selectedWord.length()));
         remainingAttempts = 6;
 
-        wordLabel = new JLabel();
+        wordLabel = new JLabel("The Label", SwingConstants.CENTER);
         setLabelText();
         wordLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 
-        guessField = new JTextField();
-        guessField.setPreferredSize(new Dimension(100, 20));
-        gamePanel.add(this.guessField);
-        gamePanel.add(this.wordLabel);
+        gamePanel.add(this.wordLabel, BorderLayout.CENTER);
     }
 
     private void setLabelText() {
