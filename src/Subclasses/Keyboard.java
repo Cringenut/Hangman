@@ -1,8 +1,10 @@
+package Subclasses;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Keyboard extends JFrame {
-    private JFrame f = new JFrame("Keyboard");
+    private JFrame f = new JFrame("Subclasses.Keyboard");
 
     private JPanel keyboard = new JPanel();
 
