@@ -1,13 +1,25 @@
 package Hangman;
 
+import Subclasses.Game;
 import Subclasses.Keyboard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class Hangman extends JFrame {
     Hangman() {
         initializeGUI();
+    }
+
+    private Keyboard keyboard;
+    private Game game;
+
+    public Game getGame() {
+        return game;
     }
 
     private void initializeGUI() {
@@ -18,19 +30,16 @@ public class Hangman extends JFrame {
 
         // Create main sub objects
         Keyboard keyboard = new Keyboard(this);
+        game = new Game(this);
 
         // Create the three sub panels
         JPanel picturePanel = new JPanel();
-        JPanel gamePanel = new JPanel();
-        JPanel keyboardPanel = keyboard.getKeyboardPanel();
 
         picturePanel.setPreferredSize(new Dimension(200, 200));
-        gamePanel.setPreferredSize(new Dimension(400, 200));
-
 
         // Set the background colors for the panels
         picturePanel.setBackground(Color.RED);
-        gamePanel.setBackground(Color.GREEN);
+
 
         // Set the layout for the frame
         setLayout(new BorderLayout());
@@ -38,19 +47,23 @@ public class Hangman extends JFrame {
         // Create a container panel to hold the two panels on top
         JPanel topContainerPanel = new JPanel(new BorderLayout());
         topContainerPanel.add(picturePanel, BorderLayout.WEST);
-        topContainerPanel.add(gamePanel, BorderLayout.EAST);
+        topContainerPanel.add(game.getGamePanel(), BorderLayout.EAST);
 
         // Add the container panel and the third panel to the frame
         add(topContainerPanel, BorderLayout.NORTH);
-        add(keyboardPanel, BorderLayout.CENTER);
+        add(keyboard.getKeyboardPanel(), BorderLayout.CENTER);
 
-        JTextField textField = new JTextField();
-        textField.setPreferredSize(new Dimension(100, 20));
-        gamePanel.add(textField);
+
 
 
         pack();
         setVisible(true);
+    }
+
+    public void restartGame() {
+        String[] args = new String[0]; // Or String[] args = {};
+        main(args);
+        dispose();
     }
 
     public static void main(String[] args) {

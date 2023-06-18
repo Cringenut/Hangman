@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class Keyboard extends JFrame {
 
@@ -32,6 +33,7 @@ public class Keyboard extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String letter = button.getText();
+                    hangman.getGame().processGuess(letter);
                     button.setEnabled(false);
                 }
             });
