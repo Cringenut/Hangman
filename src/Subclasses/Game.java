@@ -146,6 +146,7 @@ public class Game extends JFrame {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            selectedWord = "ananas";
         }
     }
 }
