@@ -138,10 +138,14 @@ public class Game extends JFrame {
         try (Connection conn = DriverManager.getConnection(url, username, password);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
-             selectedWord = rs.getString("word");
+            if (rs.next()) {
+                selectedWord = rs.getString("word");
+            } else {
+                System.out.println("No records found.");
+                selectedWord = "ananas";
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }
