@@ -59,6 +59,7 @@ public class Keyboard extends JFrame {
     }
 
     public void clickKeyAtLetter(Character letter) {
+        // Find a button by its letter and click it
         int index = Arrays.asList(letters).indexOf(letter.toString().toUpperCase(Locale.ROOT));
         this.getButtonAtIndex(index).doClick();
     }

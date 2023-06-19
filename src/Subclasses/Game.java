@@ -75,7 +75,7 @@ public class Game extends JFrame {
             }
             setLabelText();
 
-            // If no underscore left show
+            // If no underscore left show "You won!" window
             if (!currentGuess.toString().contains("_")) {
                 if(JOptionPane.showConfirmDialog(null, "Congratulations! You won!", "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE) == 0)
                 {
@@ -87,11 +87,12 @@ public class Game extends JFrame {
             }
         }
         else {
+            // Remove attempts
             remainingAttempts--;
             hangman.getPicture().changePicture(remainingAttempts);
 
+            // If no attempts left show "You lost!" window
             if (remainingAttempts == 0) {
-
                 if(JOptionPane.showConfirmDialog(null, "Game Over! The word was: " + selectedWord.toLowerCase(Locale.ROOT), "You lost!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE) == 0)
                 {
                     hangman.restartGame();
@@ -122,6 +123,7 @@ public class Game extends JFrame {
         List<Map.Entry<Character, Integer>> sortedEntries = new ArrayList<>(letterCountMap.entrySet());
         Collections.sort(sortedEntries, Comparator.comparing(Map.Entry::getKey));
 
+        // Click on the button with the rarest letter in a word
         this.hangman.getKeyboard().clickKeyAtLetter(letterCountMap.lastKey());
     }
 
