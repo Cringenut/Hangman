@@ -27,7 +27,7 @@ public class Game extends JFrame {
 
         gamePanel = new JPanel(new BorderLayout());
         gamePanel.setPreferredSize(new Dimension(400, 100));
-        gamePanel.setBackground(Color.GREEN);
+        gamePanel.setBackground(Color.WHITE);
 
         generateSelectedWord();
         this.selectedWord = selectedWord.toUpperCase(Locale.ROOT);

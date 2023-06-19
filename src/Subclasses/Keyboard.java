@@ -25,7 +25,7 @@ public class Keyboard extends JFrame {
         this.hangman = hangman;
         this.keyboardPanel = new JPanel((new GridLayout(2, 13)));
         this.keyboardPanel.setPreferredSize(new Dimension(600, 100));
-        this.keyboardPanel.setBackground(Color.YELLOW);
+        this.keyboardPanel.setBackground(Color.WHITE);
 
         // Loop to create buttons for each letter
         for (String letter : letters) {
