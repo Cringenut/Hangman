@@ -1,7 +1,5 @@
 package Subclasses;
 
-import Hangman.Hangman;
-
 import javax.swing.*;
 import java.awt.*;
 

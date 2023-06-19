@@ -12,14 +12,12 @@ import java.util.*;
 
 public class Game extends JFrame {
 
-    private String[] words = {"hangman", "guess", "ananas"};
     private String selectedWord;
     private StringBuilder currentGuess;
     private int remainingAttempts;
 
     private final JPanel gamePanel;
     private Hangman hangman;
-    private JTextField guessField;
     private JLabel wordLabel;
 
     public Game(Hangman hangman) {
