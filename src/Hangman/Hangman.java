@@ -64,6 +64,7 @@ public class Hangman extends JFrame {
     }
 
     public void restartGame() {
+        // Launches new main and closes previous window
         String[] args = new String[0]; // Or String[] args = {};
         main(args);
         dispose();

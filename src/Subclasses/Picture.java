@@ -8,7 +8,6 @@ import java.awt.*;
 public class Picture extends JFrame {
 
     private JPanel picturePanel;
-    private Hangman hangman;
     private ImageIcon imageIcon;
 
     public Picture() {
@@ -28,14 +27,10 @@ public class Picture extends JFrame {
     }
 
     public void changePicture(int remainingAttempts) {
+        // Changing ImageIcon and calling repaint method from overridden JPanel class
         String url = "../Images/hangman" + remainingAttempts + ".jpg";
-
         imageIcon = new ImageIcon(Picture.class.getResource(url));
         picturePanel.repaint();
-    }
-
-    private void drawImageOnPanel() {
-
     }
 
     public JPanel getPicturePanel() {

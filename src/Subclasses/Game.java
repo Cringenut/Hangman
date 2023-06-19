@@ -54,6 +54,7 @@ public class Game extends JFrame {
     private void setLabelText() {
         StringBuilder finalString = new StringBuilder();
 
+        // Using HTML tags to format text and make spaces visible
         finalString.append("<html>");
         for (int i = 0; i < currentGuess.length(); i++) {
             finalString.append(currentGuess.charAt(i));
@@ -66,6 +67,7 @@ public class Game extends JFrame {
 
     public void processGuess(String guess) {
         if (selectedWord.contains(guess)) {
+            // Replace underscore with right guess
             for (int i = 0; i < selectedWord.length(); i++) {
                 if (selectedWord.charAt(i) == guess.charAt(0)) {
                     this.currentGuess.setCharAt(i, guess.charAt(0));
@@ -73,6 +75,7 @@ public class Game extends JFrame {
             }
             setLabelText();
 
+            // If no underscore left show
             if (!currentGuess.toString().contains("_")) {
                 if(JOptionPane.showConfirmDialog(null, "Congratulations! You won!", "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE) == 0)
                 {
@@ -98,10 +101,6 @@ public class Game extends JFrame {
                 }
             }
         }
-    }
-
-    public JPanel getGamePanel() {
-        return gamePanel;
     }
 
     public void giveHints() {
@@ -141,12 +140,18 @@ public class Game extends JFrame {
             if (rs.next()) {
                 selectedWord = rs.getString("word");
             } else {
+                // Set selectedWord to "ananas" if no records were found
                 System.out.println("No records found.");
                 selectedWord = "ananas";
             }
         } catch (SQLException e) {
+            // Set selectedWord to "ananas" if no database was found and
             e.printStackTrace();
             selectedWord = "ananas";
         }
+    }
+
+    public JPanel getGamePanel() {
+        return gamePanel;
     }
 }
