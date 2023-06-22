@@ -104,7 +104,7 @@ public class Game extends JFrame {
     public void giveHints() {
         TreeMap<Character, Integer> letterCountMap = new TreeMap<>();
 
-        // Count the occurrence of each letter
+        // Count the occurrence of each letter in selected word
         for (char c : selectedWord.toCharArray()) {
             if (Character.isLetter(c)) {
                 c = Character.toLowerCase(c); // Ignore case
