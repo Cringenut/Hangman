@@ -44,7 +44,6 @@ public class Game extends JFrame {
                 hangman.restartGame();
             }
         });
-
         gamePanel.add(this.wordLabel, BorderLayout.CENTER);
         gamePanel.add(restartButton, BorderLayout.SOUTH);
     }

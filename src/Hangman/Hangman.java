@@ -36,8 +36,9 @@ public class Hangman extends JFrame {
         this.keyboard = new Keyboard(this);
         this.game = new Game(this);
         this.picture = new Picture();
-        this.game.giveHints();
 
+        // Give hints
+        this.game.giveHints();
 
         // Create the three sub panels
         JPanel picturePanel = new JPanel();
